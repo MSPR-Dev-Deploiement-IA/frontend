@@ -10,6 +10,10 @@
 		{#if $userStore}
 			<a href="/profile" class="text-blue-500 ml-4">Profile</a>
 			<a href="/logout" class="text-blue-500 ml-4">Logout</a>
+			<a href="/map" class="text-blue-500 ml-4">Carte</a>
+			<a href="/advise" class="text-blue-500 ml-4">Conseil</a>
+			<a href="/chat" class="text-blue-500 ml-4">Message</a>
+			<a href="/mobile" class="text-blue-500 ml-4">Application Mobile</a>
 		{:else}
 			<a href="/auth/login" class="text-blue-500 ml-4">Login</a>
 			<a href="/auth/register" class="text-blue-500 ml-4">Register</a>

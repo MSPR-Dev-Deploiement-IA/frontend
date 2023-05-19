@@ -10,7 +10,7 @@
 
   async function handleSubmit() {
     try {
-      const isSuccess: boolean = await register(name, password, email);
+      const isSuccess: boolean = await register(name, email, password);
       if (isSuccess) {
         registrationSuccess = true;
         registrationError = false;

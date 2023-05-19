@@ -1,9 +1,9 @@
 import { PUBLIC_BACKEND } from '$env/static/public';
 
-export const login = async (password: string, email: string) => {
+export const login = async (email: string, password: string) => {
 	const body = JSON.stringify({
+		email,
 		password,
-		email
 	});
 
 	const response = await fetch(`${PUBLIC_BACKEND}/auth/login`, {

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto, invalidateAll } from '$app/navigation';
 	import { login } from '$lib/api/auth/login'; // Replace with the actual path to your register function
 
 	let password: string = '';
@@ -12,6 +13,9 @@
 			if (isSuccess) {
 				loginSuccess = true;
 				loginError = false;
+				invalidateAll();
+				// Redirect to home page
+				goto('/');
 			} else {
 				loginSuccess = false;
 				loginError = true;

@@ -2,8 +2,8 @@ import { PUBLIC_BACKEND } from '$env/static/public';
 import { redirect } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 
-export const load = (async ({ parent }) => {
-    const {user} = await parent();
+export const load = (async ({  }) => {
 
-    return {user};
+
+    return {};
 }) satisfies PageLoad;

@@ -2,5 +2,8 @@
 	import { userStore } from '$lib/stores/user';
 </script>
 
-
-<p>Hello {$userStore.email} !</p>
+{#if $userStore}
+	<p>Hello {$userStore.email} !</p>
+{:else}
+	<p>Hello guest !</p>
+{/if}

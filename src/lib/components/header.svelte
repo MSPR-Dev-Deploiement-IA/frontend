@@ -9,6 +9,7 @@
 	<nav>
 		{#if $userStore}
 			<a href="/profile" class="ml-4 text-blue-500">Profile</a>
+			<a href="/upload" class="ml-4 text-blue-500">Upload</a>
 			<a href="/logout" class="ml-4 text-blue-500">Logout</a>
 			<a href="/map" class="ml-4 text-blue-500">Carte</a>
 			<a href="/advise" class="ml-4 text-blue-500">Conseil</a>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { userStore } from "$lib/stores/user";
+	import { userStore } from '$lib/stores/user';
 </script>
 
 <header class="flex items-center justify-between bg-gray-100 py-4 px-6 shadow">

@@ -5,8 +5,7 @@ import type { LayoutLoad } from './$types';
 export const load = (async ({ fetch }) => {
 	// log "Relaoding user + current time"
 	console.log('Reloading user' + new Date());
-	
-	
+
 	const response = await fetch(`${PUBLIC_BACKEND}/api/users/me`);
 
 	if (!response.ok) {
@@ -14,9 +13,9 @@ export const load = (async ({ fetch }) => {
 	}
 
 	const json = await response.json();
-	const user = json.user;	
-	
+	const user = json.user;
+
 	userStore.set(user);
 
-	return { };
+	return {};
 }) satisfies LayoutLoad;

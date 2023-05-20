@@ -4,10 +4,10 @@ export const register = async (name: string, email: string, password: string) =>
 	const body = JSON.stringify({
 		email,
 		name,
-		password,
+		password
 	});
 
-	console.log(body);	
+	console.log(body);
 
 	const response = await fetch(`${PUBLIC_BACKEND}/auth/register`, {
 		method: 'POST',

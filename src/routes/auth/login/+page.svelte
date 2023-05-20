@@ -13,7 +13,7 @@
 			if (isSuccess) {
 				loginSuccess = true;
 				loginError = false;
-				
+
 				// Redirect to home page
 				goto('/');
 			} else {

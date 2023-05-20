@@ -2,7 +2,7 @@
 	import { userStore } from '$lib/stores/user';
 </script>
 
-<header class="flex items-center justify-between bg-gray-100 px-6 py-4 shadow">
+<header class="flex items-center justify-between bg-gray-100 px-6 py-4 shadow h-16">
 	<a href="/">
 		<h1 class="text-xl font-bold text-gray-800">A'Rosa'je</h1>
 	</a>

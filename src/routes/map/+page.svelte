@@ -49,6 +49,6 @@
 <style>
     @import 'leaflet/dist/leaflet.css';
     main div {
-        height: 1200px;
+        height: calc(100vh - 4rem);
     }
 </style>

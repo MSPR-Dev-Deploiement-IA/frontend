@@ -10,9 +10,9 @@ export const load = (async ({ fetch }) => {
 	}
 
 	const json = await response.json();
-	const user = json.user;	
-	
+	const user = json.user;
+
 	userStore.set(user);
 
-	return { };
+	return {};
 }) satisfies LayoutLoad;

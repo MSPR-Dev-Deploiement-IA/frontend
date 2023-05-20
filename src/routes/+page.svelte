@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { userStore } from "$lib/stores/user";
-
+	import { userStore } from '$lib/stores/user';
 </script>
 
 

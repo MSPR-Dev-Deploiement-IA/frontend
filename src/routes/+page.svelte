@@ -4,4 +4,4 @@
 </script>
 
 
-<p>{$userStore}</p>
+<p>Hello {$userStore.email} !</p>

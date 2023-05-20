@@ -3,10 +3,6 @@ import { userStore } from '$lib/stores/user';
 import type { LayoutLoad } from './$types';
 
 export const load = (async ({ fetch }) => {
-	// log "Relaoding user + current time"
-	console.log('Reloading user' + new Date());
-	
-	
 	const response = await fetch(`${PUBLIC_BACKEND}/api/users/me`);
 
 	if (!response.ok) {

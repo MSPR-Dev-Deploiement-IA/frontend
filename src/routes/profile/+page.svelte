@@ -3,9 +3,9 @@
 	import { userStore } from '$lib/stores/user';
 </script>
 
-<main class="flex items-center justify-center h-screen">
-	<div class="w-1/3 bg-white rounded-lg shadow-lg p-8">
-		<h1 class="text-2xl font-bold mb-4">Profile</h1>
+<main class="flex h-screen items-center justify-center">
+	<div class="w-1/3 rounded-lg bg-white p-8 shadow-lg">
+		<h1 class="mb-4 text-2xl font-bold">Profile</h1>
 
 		{#if $userStore}
 			<div class="mb-4">

@@ -31,9 +31,9 @@
 	};
 </script>
 
-<main class="flex items-center justify-center h-screen">
-	<div class="w-1/3 bg-white rounded-lg shadow-lg p-8">
-		<h1 class="text-2xl font-bold mb-4">Formulaire</h1>
+<main class="flex h-screen items-center justify-center">
+	<div class="w-1/3 rounded-lg bg-white p-8 shadow-lg">
+		<h1 class="mb-4 text-2xl font-bold">Formulaire</h1>
 
 		<form on:submit|preventDefault={handleSubmit}>
 			<div class="mb-4">
@@ -42,18 +42,18 @@
 					<input
 						type="text"
 						id="name"
-						class="border border-gray-300 rounded px-4 py-2 mr-2 w-11/12"
+						class="mr-2 w-11/12 rounded border border-gray-300 px-4 py-2"
 						bind:value={name}
 					/>
 					<span
-						class="text-sm text-gray-500 cursor-help w-1/12"
+						class="w-1/12 cursor-help text-sm text-gray-500"
 						title="Donner ici un nom à votre plante"
 					>
 						<!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v2m0 12a9 9 0 110-18 9 9 0 010 18z"></path>
             </svg> -->
 						<div
-							class="border border-1 border-gray-500 bg- rounded-full w-full h-full flex flex-row items-center justify-center"
+							class="border-1 bg- flex h-full w-full flex-row items-center justify-center rounded-full border border-gray-500"
 						>
 							❔
 						</div>
@@ -67,7 +67,7 @@
 					<select
 						id="dropdown"
 						class:hide={addNewSpecies}
-						class="border border-gray-300 rounded px-4 py-2 w-11/12"
+						class="w-11/12 rounded border border-gray-300 px-4 py-2"
 						bind:value={selectedOption}
 					>
 						{#each dropdownOptions as option}
@@ -86,7 +86,7 @@
 				{#if addNewSpecies}
 					<input
 						id="newOption"
-						class="border border-gray-300 rounded px-4 py-2 w-full mt-2"
+						class="mt-2 w-full rounded border border-gray-300 px-4 py-2"
 						bind:value={newOption}
 						placeholder="Entrez une nouvelle espèce"
 					/>
@@ -99,7 +99,7 @@
 					<select
 						id="dropdown"
 						class:hide={addNewAddress}
-						class="border border-gray-300 rounded px-4 py-2 w-11/12"
+						class="w-11/12 rounded border border-gray-300 px-4 py-2"
 						bind:value={selectedAddress}
 					>
 						{#each addressOptions as address}
@@ -122,7 +122,7 @@
 							<input
 								type="text"
 								id="address"
-								class="border border-gray-300 rounded px-4 py-2 w-full"
+								class="w-full rounded border border-gray-300 px-4 py-2"
 								bind:value={address}
 							/>
 						</div>
@@ -131,7 +131,7 @@
 							<input
 								type="text"
 								id="zipCode"
-								class="border border-gray-300 rounded px-4 py-2 w-full"
+								class="w-full rounded border border-gray-300 px-4 py-2"
 								bind:value={zipCode}
 							/>
 						</div>
@@ -140,7 +140,7 @@
 							<input
 								type="text"
 								id="city"
-								class="border border-gray-300 rounded px-4 py-2 w-full"
+								class="w-full rounded border border-gray-300 px-4 py-2"
 								bind:value={city}
 							/>
 						</div>
@@ -149,7 +149,7 @@
 							<input
 								type="text"
 								id="country"
-								class="border border-gray-300 rounded px-4 py-2 w-full"
+								class="w-full rounded border border-gray-300 px-4 py-2"
 								bind:value={country}
 							/>
 						</div>
@@ -161,7 +161,7 @@
 				<label class="block" for="description">Description:</label>
 				<textarea
 					id="description"
-					class="border border-gray-300 rounded px-4 py-2 w-full"
+					class="w-full rounded border border-gray-300 px-4 py-2"
 					bind:value={description}
 				/>
 			</div>
@@ -172,12 +172,12 @@
 					type="file"
 					id="file"
 					multiple
-					class="border border-gray-300 rounded px-4 py-2 w-full"
+					class="w-full rounded border border-gray-300 px-4 py-2"
 					on:change={handleFileChange}
 				/>
 			</div>
 
-			<button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Soumettre</button>
+			<button type="submit" class="rounded bg-blue-500 px-4 py-2 text-white">Soumettre</button>
 		</form>
 	</div>
 </main>

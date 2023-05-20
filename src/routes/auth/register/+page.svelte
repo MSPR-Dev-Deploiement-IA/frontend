@@ -26,9 +26,9 @@
 	}
 </script>
 
-<main class="flex items-center justify-center h-screen">
-	<div class="w-1/3 bg-white rounded-lg shadow-lg p-8">
-		<h1 class="text-2xl font-bold mb-4">Register</h1>
+<main class="flex h-screen items-center justify-center">
+	<div class="w-1/3 rounded-lg bg-white p-8 shadow-lg">
+		<h1 class="mb-4 text-2xl font-bold">Register</h1>
 
 		{#if registrationSuccess}
 			<p class="text-green-500">Registration successful!</p>
@@ -42,7 +42,7 @@
 				<input
 					type="text"
 					id="name"
-					class="border border-gray-300 rounded px-4 py-2 w-full"
+					class="w-full rounded border border-gray-300 px-4 py-2"
 					bind:value={name}
 					required
 				/>
@@ -53,7 +53,7 @@
 				<input
 					type="email"
 					id="email"
-					class="border border-gray-300 rounded px-4 py-2 w-full"
+					class="w-full rounded border border-gray-300 px-4 py-2"
 					bind:value={email}
 					required
 				/>
@@ -64,7 +64,7 @@
 				<input
 					type="password"
 					id="password"
-					class="border border-gray-300 rounded px-4 py-2 w-full"
+					class="w-full rounded border border-gray-300 px-4 py-2"
 					bind:value={password}
 					required
 				/>
@@ -75,13 +75,13 @@
 				<input
 					type="password"
 					id="password-confirmation"
-					class="border border-gray-300 rounded px-4 py-2 w-full"
+					class="w-full rounded border border-gray-300 px-4 py-2"
 					bind:value={password_confirm}
 					required
 				/>
 			</div>
 
-			<button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Register</button>
+			<button type="submit" class="rounded bg-blue-500 px-4 py-2 text-white">Register</button>
 		</form>
 	</div>
 </main>

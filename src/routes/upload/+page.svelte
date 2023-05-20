@@ -38,7 +38,7 @@
 		<form on:submit|preventDefault={handleSubmit}>
 			<div class="mb-4">
 				<label class="block" for="name">Nom:</label>
-				<div class="flex flex-row">
+				<div class="flex flex-row items-center">
 					<input
 						type="text"
 						id="name"
@@ -46,17 +46,14 @@
 						bind:value={name}
 					/>
 					<span
-						class="w-1/12 cursor-help text-sm text-gray-500"
-						title="Donner ici un nom à votre plante"
+						class="cursor-help text-sm text-gray-500"
+						title="Donner ici un nom à votre plante w-1/12"
 					>
 						<!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 12a2 2 0 114 0 2 2 0 01-4 0zm-1 4h6"></path>
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v2m0 12a9 9 0 110-18 9 9 0 010 18z"></path>
             </svg> -->
-						<div
-							class="border-1 bg- flex h-full w-full flex-row items-center justify-center rounded-full border border-gray-500"
-						>
-							❔
-						</div>
+						❔
 					</span>
 				</div>
 			</div>

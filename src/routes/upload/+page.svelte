@@ -2,6 +2,7 @@
 	import { add_plant } from '$lib/api/plants/add_plant';
 	import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications';
 	import type { PageData } from './$types';
+	import { add_photo } from '$lib/api/plants/add_photo';
 
 	export let data: PageData;
 
@@ -69,11 +70,20 @@
 
 		const res = await add_plant(body);
 
-		if (res.status === 201) {
+		console.log(res);
+
+		if (res.plant_id !== 0) {
 			console.log('Plant added');
 			const plant_id = res.plant_id;
 
 			// Upload files
+			const uploadResponse = await add_photo(plant_id, uploadedFiles);
+			if (uploadResponse.status === 201) {
+				console.log('Files uploaded');
+			} else {
+				console.log('Files not uploaded');
+				notifier.danger(uploadResponse.message, 7000);
+			}
 		} else {
 			console.log('Plant not added');
 			notifier.danger(res.message, 7000);

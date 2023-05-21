@@ -1,8 +1,6 @@
 import { PUBLIC_BACKEND } from "$env/static/public"
 
 export const add_plant = async (body: object) => {
-    console.log(body);
-    
     const response =  await fetch(`${PUBLIC_BACKEND}/api/plants/add`, {
         method: 'POST',
         credentials: 'include',

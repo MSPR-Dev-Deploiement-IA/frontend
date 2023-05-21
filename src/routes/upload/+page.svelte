@@ -1,6 +1,12 @@
 <script lang="ts">
-	import { add_plant } from '$lib/api/profile/add_plant';
+	import { add_plant } from '$lib/api/plants/add_plant';
 	import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
+
+	const species = data.species_names;
+	const addresses = data.addresses;
 
 	// Species
 	let selectedSpecies: string;
@@ -11,17 +17,18 @@
 	// Address
 	let selectedAddress: string = '';
 	let addNewAddress: boolean = false;
-	let addressOptions: string[] = ['Adresse 1', 'Adresse 2', 'Adresse 3'];
+	let addressOptions: string[] = addresses;
 	let address: string = '';
 	let zipCode: string = '';
 	let city: string = '';
 	let country: string = '';
+	let addressName: string = '';
 
 	// Name
 	let name: string;
 
 	// Dropdown options
-	const dropdownOptions: string[] = ['Option 1', 'Option 2', 'Option 3']; // Please replace with your actual options
+	const dropdownOptions: string[] = species;
 
 	// File handling
 	let uploadedFiles: File[] = [];
@@ -40,7 +47,6 @@
 		let body = <any>{};
 		body.name = name;
 		body.description = description;
-		body.files = uploadedFiles;
 
 		if (addNewSpecies) {
 			body.newSpecies = newSpecies;
@@ -53,38 +59,28 @@
 				address: address,
 				zipCode: zipCode,
 				city: city,
-				country: country
+				country: country,
+				name: addressName
 			};
 			body.newAddress = fullAddress;
 		} else {
 			body.address = selectedAddress;
 		}
 
-		const formData = new FormData();
-		for (const [key, value] of Object.entries(body)) {
-			if (value instanceof File) {
-				formData.append(key, value);
-			} else {
-				formData.append(key, String(value));
-			}
-		}
-		for (const file of uploadedFiles) {
-			formData.append('files', file);
-		}
-
-		const res = await add_plant(formData);
-
-		console.log(body);
+		const res = await add_plant(body);
 
 		if (res.status === 201) {
 			console.log('Plant added');
-			notifier.success(res.message, 7000);
+			const plant_id = res.plant_id;
+
+			// Upload files
 		} else {
 			console.log('Plant not added');
 			notifier.danger(res.message, 7000);
 		}
 	};
 </script>
+
 
 <NotificationDisplay />
 <main class="flex h-screen items-center justify-center">
@@ -105,10 +101,6 @@
 						class="cursor-help text-sm text-gray-500"
 						title="Donner ici un nom à votre plante w-1/12"
 					>
-						<!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 12a2 2 0 114 0 2 2 0 01-4 0zm-1 4h6"></path>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v2m0 12a9 9 0 110-18 9 9 0 010 18z"></path>
-            </svg> -->
 						❔
 					</span>
 				</div>
@@ -170,6 +162,15 @@
 
 				{#if addNewAddress}
 					<div class="grid grid-cols-2 gap-4">
+						<div>
+							<label class="block" for="address">Nom de l'Adresse :</label>
+							<input
+								type="text"
+								id="address"
+								class="w-full rounded border border-gray-300 px-4 py-2"
+								bind:value={addressName}
+							/>
+						</div>
 						<div>
 							<label class="block" for="address">Adresse :</label>
 							<input

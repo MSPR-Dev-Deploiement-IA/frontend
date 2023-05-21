@@ -11,6 +11,9 @@
 	 */
     let map;
 
+    /** @type {import('./$types').PageData} */
+    export let data;
+
     onMount(async () => {
         if(browser) {
             const leaflet = await import('leaflet');
@@ -26,9 +29,27 @@
                 navigator.geolocation.getCurrentPosition((position) => {
                     const { latitude, longitude } = position.coords;
                     leaflet.marker([latitude, longitude]).addTo(map)
+                        // make it red
+                        .setIcon(leaflet.icon({
+                            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                            iconSize: [25, 41],
+                            iconAnchor: [12, 41],
+                            popupAnchor: [1, -34],
+                            shadowSize: [41, 41]
+                        }))
                         .bindPopup('You are here.')
                         .openPopup();
                 });
+            }
+
+            // Add markers for each of the locations
+            const plants = data.plants;
+            for(let i = 0; i < plants.length; i++) {
+                const plant = plants[i];
+                leaflet.marker([plant.location.latitude, plant.location.longitude]).addTo(map)
+                    .bindPopup(plant.name)
+                    .openPopup();
             }
         }
     });

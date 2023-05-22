@@ -47,8 +47,13 @@
             const plants = data.plants;
             for(let i = 0; i < plants.length; i++) {
                 const plant = plants[i];
+                const html = `
+                    <h2>${plant.name}</h2>
+                    <p>${plant.species.common_name}</p>
+                    <a href="/plant/${plant.ID}">View plant</a>
+                `;
                 leaflet.marker([plant.location.latitude, plant.location.longitude]).addTo(map)
-                    .bindPopup(plant.name)
+                    .bindPopup(html)
                     .openPopup();
             }
         }

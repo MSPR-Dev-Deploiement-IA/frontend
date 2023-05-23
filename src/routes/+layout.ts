@@ -1,4 +1,7 @@
-import { PUBLIC_BACKEND } from '$env/static/public';
+import { env } from '$env/dynamic/public';
+
+const PUBLIC_BACKEND = env.PUBLIC_BACKEND;
+
 import { userStore } from '$lib/stores/user';
 import type { LayoutLoad } from './$types';
 

@@ -13,7 +13,7 @@
 		}
 		const isSuccessful = await post_message(message);
 		if (isSuccessful) {
-			message = '';  // reset the input field after successful upload
+			message = ''; // reset the input field after successful upload
 		}
 	};
 

@@ -6,10 +6,8 @@ export const load = (async () => {
 	const species = await get_all_species();
 	const locations = await get_user_locations();
 
+	const species_names = species.map((species: { common_name: any }) => species.common_name);
+	const addresses = locations.map((location: { name: any }) => location.name);
 
-	const species_names = species.map((species: { common_name: any; }) => species.common_name);
-	const addresses = locations.map((location: { name: any; }) => location.name);
-
-	return {species_names, addresses};
-	
+	return { species_names, addresses };
 }) satisfies PageLoad;

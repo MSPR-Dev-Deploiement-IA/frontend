@@ -1,4 +1,7 @@
-import { PUBLIC_BACKEND } from '$env/static/public';
+import { env } from '$env/dynamic/public';
+
+const PUBLIC_BACKEND = env.PUBLIC_BACKEND;
+
 import type { Handle } from '@sveltejs/kit';
 
 export const handle = (async ({ event, resolve }) => {
@@ -7,7 +10,7 @@ export const handle = (async ({ event, resolve }) => {
 		credentials: 'include'
 	});
 
-    console.log('refreshed');   
+	console.log('refreshed');
 
 	const response = await resolve(event);
 	return response;

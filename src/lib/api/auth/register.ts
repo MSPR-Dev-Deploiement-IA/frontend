@@ -1,4 +1,6 @@
-import { PUBLIC_BACKEND } from '$env/static/public';
+import { env } from '$env/dynamic/public';
+
+const PUBLIC_BACKEND = env.PUBLIC_BACKEND;
 
 export const register = async (name: string, email: string, password: string) => {
 	const body = JSON.stringify({

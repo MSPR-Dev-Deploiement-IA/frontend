@@ -91,7 +91,6 @@
 	};
 </script>
 
-
 <NotificationDisplay />
 <main class="flex h-screen items-center justify-center">
 	<div class="w-1/3 rounded-lg bg-white p-8 shadow-lg">
@@ -239,12 +238,12 @@
 					class="w-full rounded border border-gray-300 px-4 py-2"
 					on:change={handleFileChange}
 				/>
-				<div class="flex flex-wrap mt-2">
+				<div class="mt-2 flex flex-wrap">
 					{#each uploadedFiles as file, i}
 						<div class="relative m-2">
 							<img src={URL.createObjectURL(file)} alt="Preview" class="h-24 w-24 object-cover" />
 							<button
-								class="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1"
+								class="absolute right-0 top-0 rounded-full bg-red-500 p-1 text-white"
 								on:click={() => {
 									uploadedFiles.splice(i, 1);
 									uploadedFiles = [...uploadedFiles];
@@ -257,7 +256,11 @@
 				</div>
 			</div>
 
-			<button type="submit" class="rounded bg-blue-500 px-4 py-2 text-white mt-5" on:click={handleSubmit}>Soumettre</button>
+			<button
+				type="submit"
+				class="mt-5 rounded bg-blue-500 px-4 py-2 text-white"
+				on:click={handleSubmit}>Soumettre</button
+			>
 		</div>
 	</div>
 </main>

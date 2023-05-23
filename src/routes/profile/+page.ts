@@ -1,4 +1,7 @@
-import { PUBLIC_BACKEND } from '$env/static/public';
+import { env } from '$env/dynamic/public';
+
+const PUBLIC_BACKEND = env.PUBLIC_BACKEND;
+
 import { redirect } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 

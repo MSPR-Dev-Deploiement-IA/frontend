@@ -5,7 +5,41 @@
 
 	import type { PageData } from './$types';
 
+	import { onMount, onDestroy } from 'svelte';
+	import flatpickr from "flatpickr";
+	import { French } from "flatpickr/dist/l10n/fr.js";
+
+
+
 	export let data: PageData;
+
+	let datepicker: flatpickr.Instance | null = null;  
+	let dateInput: HTMLInputElement;
+
+
+	onDestroy(() => {
+		if (datepicker) datepicker.destroy();
+	});
+
+	function handleClick() {
+	if (!datepicker) {
+		datepicker = flatpickr(dateInput, {
+			mode: "range",
+			inline: true,
+			dateFormat: "j F Y",
+			minDate: "today",
+			locale: French,
+			onChange: function(selectedDates, dateStr, instance) {
+				if (selectedDates.length == 2) {
+					instance.close();
+					instance.calendarContainer.style.display = "none";
+				}
+			},
+		});
+	}
+	datepicker.calendarContainer.style.display = "block";
+	datepicker.open(); // Assurez-vous que le calendrier est ouvert.
+}
 
 	const generate_image_url = (photo_url: string) => {
 		return `${PUBLIC_BACKEND}/api/static/${photo_url}`;
@@ -18,10 +52,17 @@
 
 {#if data}
 	<div class="flex flex-col items-center justify-center">
-		<h1 class="mb-4 text-2xl font-bold">{data.name}</h1>
-		<p class="mb-4 text-lg">{data.species.common_name}</p>
-
-		<div class="relative h-64 w-full max-w-md overflow-hidden rounded-lg shadow-lg">
+		<div class="w-full md:w-1/2 p-4">
+			<div class="rounded-lg bg-white p-8 shadow-lg flex flex-col items-center justify-center text-center">
+				<h1 class="mb-4 text-2xl font-bold">Nom: {data.name}</h1>
+				<p class="mb-4 text-lg">Espèce: {data.species.common_name}</p>
+				<p class="mb-4 text-lg">Adresse: {data.location.address}</p>
+				<p class="mb-4 text-lg">Description: {data.description}</p>
+			</div>
+		</div>
+		
+		
+		<div class="relative h-96 w-full max-w-md overflow-hidden rounded-lg shadow-lg">
 			{#each data.photos as photo_url, index}
 				<img
 					src={`${PUBLIC_BACKEND}/api/static/${photo_url.photo_file_url}`}
@@ -45,5 +86,24 @@
 				&#10095;
 			</button>
 		</div>
+		
+
+		<button 
+			class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+			on:click={handleClick}
+			>
+			Sélectionner une date de gardiennage
+		</button>
+
+		<input type="date" class="datepicker" bind:this={dateInput} placeholder="Aucune date sélectionnée" readonly/>
+
+
 	</div>
 {/if}
+
+
+<style>
+@import "flatpickr/dist/flatpickr.min.css";
+	.flatpickr-calendar {
+		display: none;
+	}</style>

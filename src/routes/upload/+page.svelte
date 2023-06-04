@@ -32,7 +32,6 @@
 	let startDate: Date;
 	let endDate: Date;
 
-
 	let datepicker: flatpickr.Instance | null = null;
 	let dateInput: HTMLInputElement;
 
@@ -299,19 +298,19 @@
 					{/each}
 				</div>
 				<button
-			class="mt-4 rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700"
-			on:click={handleClick}
-		>
-			Sélectionner une date de gardiennage
-		</button>
+					class="mt-4 rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700"
+					on:click={handleClick}
+				>
+					Sélectionner une date de gardiennage
+				</button>
 
-		<input
-			type="date"
-			class="datepicker"
-			bind:this={dateInput}
-			placeholder="Aucune date sélectionnée"
-			readonly
-		/>
+				<input
+					type="date"
+					class="datepicker"
+					bind:this={dateInput}
+					placeholder="Aucune date sélectionnée"
+					readonly
+				/>
 			</div>
 
 			<button

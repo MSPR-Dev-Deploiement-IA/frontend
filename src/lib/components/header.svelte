@@ -8,12 +8,12 @@
 	};
 </script>
 
-<header class="flex h-16 justify-between items-center bg-gray-100 px-6 py-4 shadow">
+<header class="flex h-16 items-center justify-between bg-gray-100 px-6 py-4 shadow">
 	<a href="/">
 		<h1 class="text-xl font-bold text-gray-800">A'Rosa'je</h1>
 	</a>
-	<nav class="flex justify-center items-center w-full">
-		<div class="flex justify-center items-center flex-grow">
+	<nav class="flex w-full items-center justify-center">
+		<div class="flex flex-grow items-center justify-center">
 			{#if $userStore}
 				<a href="/profile" class="mx-4 text-blue-500">Profile</a>
 				<a href="/upload" class="mx-4 text-blue-500">Annonces</a>
@@ -33,6 +33,3 @@
 		</div>
 	</nav>
 </header>
-
-
-

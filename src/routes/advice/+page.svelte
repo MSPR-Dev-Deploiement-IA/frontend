@@ -1,6 +1,5 @@
 <script>
-    import { env } from '$env/dynamic/public';
+	import { env } from '$env/dynamic/public';
 
-    const PUBLIC_BACKEND = env.PUBLIC_BACKEND;
-
+	const PUBLIC_BACKEND = env.PUBLIC_BACKEND;
 </script>

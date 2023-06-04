@@ -10,7 +10,7 @@ export const load = (async ({ params }) => {
 	// We need to create a list of dates that are in the range of the start and end date
 
 	console.log(dates);
-	
+
 	const filledDates = [];
 	for (let i = 0; i < dates.length; i++) {
 		const date = new Date(dates[i].start_date);
@@ -21,7 +21,6 @@ export const load = (async ({ params }) => {
 			date.setDate(date.getDate() + 1);
 		}
 	}
-
 
 	return { plant, dates: filledDates };
 }) satisfies PageLoad;

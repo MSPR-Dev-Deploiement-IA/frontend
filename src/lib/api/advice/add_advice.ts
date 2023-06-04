@@ -4,11 +4,11 @@ export const add_advice = async (species_id: number, advice: string) => {
 	const response = await fetch(`${PUBLIC_BACKEND}/api/advice/`, {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'application/json',
+			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({
 			species_id: species_id,
-            text: advice
+			text: advice
 		}),
 		credentials: 'include'
 	});

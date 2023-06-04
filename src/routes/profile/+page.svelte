@@ -44,5 +44,9 @@ export function readableTimestamp(timestamp: string): string {
 			<a href="#" class="text-blue-500">Modifier le profil</a>
 		{/if}
 	</div>
+
+	<div class="w-2/3 rounded-lg bg-white p-8 shadow-lg">
+		
+	</div>
 </main>
 

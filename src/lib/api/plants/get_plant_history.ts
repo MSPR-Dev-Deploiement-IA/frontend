@@ -9,6 +9,7 @@ export const get_plant_history_by_id = async (id: string) => {
 	});
 
 	const json = await response.json();
+	console.log(json);
 
-	return json.history ? json.history : null;
+	return json ? json : [];
 };

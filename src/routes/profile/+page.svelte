@@ -43,5 +43,4 @@
 		{/if}
 	</div>
 
-	<div class="w-2/3 rounded-lg bg-white p-8 shadow-lg" />
 </main>

@@ -15,7 +15,7 @@
 				loginError = false;
 
 				// Redirect to home page
-				goto('/');
+				goto('/map');
 			} else {
 				loginSuccess = false;
 				loginError = true;

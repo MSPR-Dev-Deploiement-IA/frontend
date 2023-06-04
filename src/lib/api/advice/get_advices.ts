@@ -8,8 +8,6 @@ export const get_advices = async () => {
 
     const json = await response.json();
 
-    if (json.advices) {
-    }
-
+    // Return the advices if they exist, otherwise return an empty array.
     return json.advices ? json.advices : [];
 };

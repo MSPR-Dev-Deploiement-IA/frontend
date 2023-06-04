@@ -16,6 +16,9 @@
 	let datepicker: flatpickr.Instance | null = null;  
 	let dateInput: HTMLInputElement;
 
+	let startDate: Date;
+	let endDate: Date;
+
 
 	onDestroy(() => {
 		if (datepicker) datepicker.destroy();
@@ -31,8 +34,13 @@
 			locale: French,
 			onChange: function(selectedDates, dateStr, instance) {
 				if (selectedDates.length == 2) {
+					startDate = selectedDates[0];
+					endDate = selectedDates[1];
 					instance.close();
 					instance.calendarContainer.style.display = "none";
+
+					console.log(startDate);
+					console.log(endDate);
 				}
 			},
 		});

@@ -3,6 +3,7 @@
 	import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications';
 	import type { PageData } from './$types';
 	import { add_photo } from '$lib/api/plants/add_photo';
+	import { invalidateAll } from '$app/navigation';
 
 	export let data: PageData;
 
@@ -44,51 +45,56 @@
 
 	// Form submission
 	const handleSubmit = async () => {
-		// Handle the form submission here
-		let body = <any>{};
-		body.name = name;
-		body.description = description;
+	// Handle the form submission here
+	let body = <any>{};
+	body.name = name;
+	body.description = description;
 
-		if (addNewSpecies) {
-			body.newSpecies = newSpecies;
+	if (addNewSpecies) {
+		body.newSpecies = newSpecies;
+	} else {
+		body.species = selectedSpecies;
+	}
+
+	if (addNewAddress) {
+		let fullAddress = {
+			address: address,
+			zipCode: zipCode,
+			city: city,
+			country: country,
+			name: addressName
+		};
+		body.newAddress = fullAddress;
+	} else {
+		body.address = selectedAddress;
+	}
+
+	const res = await add_plant(body);
+
+	console.log(res);
+
+	if (res.plant_id !== 0) {
+		console.log('Plante ajoutée');
+		notifier.success('Plante ajoutée avec succès', 7000);
+		const plant_id = res.plant_id;
+
+		// Télécharger les fichiers
+		const uploadResponse = await add_photo(plant_id, uploadedFiles);
+		if (uploadResponse.status === 201) {
+			console.log('Fichiers téléchargés');
+			notifier.success('Fichiers téléchargés avec succès', 7000);
+			// Réinitialiser le formulaire
+			invalidateAll();
 		} else {
-			body.species = selectedSpecies;
+			console.log('Fichiers non téléchargés');
+			notifier.danger(uploadResponse.message, 7000);
 		}
+	} else {
+		console.log('Plante non ajoutée');
+		notifier.danger(res.message, 7000);
+	}
 
-		if (addNewAddress) {
-			let fullAddress = {
-				address: address,
-				zipCode: zipCode,
-				city: city,
-				country: country,
-				name: addressName
-			};
-			body.newAddress = fullAddress;
-		} else {
-			body.address = selectedAddress;
-		}
-
-		const res = await add_plant(body);
-
-		console.log(res);
-
-		if (res.plant_id !== 0) {
-			console.log('Plant added');
-			const plant_id = res.plant_id;
-
-			// Upload files
-			const uploadResponse = await add_photo(plant_id, uploadedFiles);
-			if (uploadResponse.status === 201) {
-				console.log('Files uploaded');
-			} else {
-				console.log('Files not uploaded');
-				notifier.danger(uploadResponse.message, 7000);
-			}
-		} else {
-			console.log('Plant not added');
-			notifier.danger(res.message, 7000);
-		}
-	};
+};
 </script>
 
 <NotificationDisplay />

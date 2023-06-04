@@ -1,8 +1,8 @@
 import { PUBLIC_BACKEND } from '$env/static/public';
 
-export const add_history = async (startDate: Date, endDate: Date, token: string): Promise<void> => {
-	if (!startDate || !endDate) {
-		console.error('Start date or end date is not set');
+export const add_history = async (startDate: Date, endDate: Date, plant_id: number) => {
+	if (!startDate || !endDate || !plant_id) {
+		console.error('Start date, end date, or plant id is not set');
 		return;
 	}
 
@@ -10,13 +10,13 @@ export const add_history = async (startDate: Date, endDate: Date, token: string)
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
-			// Include your authorization header with token here
-			Authorization: `Bearer ${token}`
 		},
 		body: JSON.stringify({
 			start_date: startDate.toISOString(),
-			end_date: endDate.toISOString()
-		})
+			end_date: endDate.toISOString(),
+			plant_id: plant_id
+		}),
+		credentials: 'include'
 	});
 
 	if (!response.ok) {
@@ -24,5 +24,5 @@ export const add_history = async (startDate: Date, endDate: Date, token: string)
 		return;
 	}
 
-	return response.json();
+	return true;
 };

@@ -9,8 +9,11 @@
 	import { onMount, onDestroy } from 'svelte';
 	import flatpickr from 'flatpickr';
 	import { French } from 'flatpickr/dist/l10n/fr.js';
+	import { goto, invalidateAll } from '$app/navigation';
 
 	export let data: PageData;
+
+	console.log(data);
 
 	let datepicker: flatpickr.Instance | null = null;
 	let dateInput: HTMLInputElement;
@@ -18,9 +21,30 @@
 	let startDate: Date;
 	let endDate: Date;
 
+	let errorText: string;
+	let successText: string;
+
+
 	onDestroy(() => {
 		if (datepicker) datepicker.destroy();
 	});
+
+	const handleSubmit = async () => {
+		console.log('submit');
+		console.log(startDate);
+		console.log(endDate);
+
+		if (startDate && endDate && data.plant.ID) {
+			const res = await add_history(startDate, endDate, data.plant.ID);
+			if (!res) {
+				errorText = 'Une erreur est survenue';
+			} else {
+				successText = 'La date a été ajoutée';
+				invalidateAll();
+				goto(`/plant/${data.plant.ID}`);
+			}
+		}
+	};
 
 	const handleClick = async () => {
 		if (!datepicker) {
@@ -29,6 +53,7 @@
 				inline: true,
 				dateFormat: 'j F Y',
 				minDate: 'today',
+				disable: data.dates,
 				locale: French,
 				onChange: async function (selectedDates, dateStr, instance) {
 					if (selectedDates.length == 2) {
@@ -39,8 +64,6 @@
 
 						console.log(startDate);
 						console.log(endDate);
-
-						await add_history(startDate, endDate, data.id);
 					}
 				}
 			});
@@ -49,13 +72,9 @@
 		datepicker.open(); // Assurez-vous que le calendrier est ouvert.
 	};
 
-	const generate_image_url = (photo_url: string) => {
-		return `${PUBLIC_BACKEND}/static/${photo_url}`;
-	};
-
 	let activeIndex = 0;
-	const next = () => (activeIndex = (activeIndex + 1) % data.photos.length);
-	const prev = () => (activeIndex = (activeIndex - 1 + data.photos.length) % data.photos.length);
+	const next = () => (activeIndex = (activeIndex + 1) % data.plant.photos.length);
+	const prev = () => (activeIndex = (activeIndex - 1 + data.plant.photos.length) % data.plant.photos.length);
 </script>
 
 {#if data}
@@ -64,17 +83,17 @@
 			<div
 				class="flex flex-col items-center justify-center rounded-lg bg-white p-8 text-center shadow-lg"
 			>
-				<h1 class="mb-4 text-2xl font-bold">Nom: {data.name}</h1>
-				<p class="mb-4 text-lg">Espèce: {data.species.common_name}</p>
-				<p class="mb-4 text-lg">Adresse: {data.location.address}</p>
-				<p class="mb-4 text-lg">Description: {data.description}</p>
+				<h1 class="mb-4 text-2xl font-bold">Nom: {data.plant.name}</h1>
+				<p class="mb-4 text-lg">Espèce: {data.plant.species.common_name}</p>
+				<p class="mb-4 text-lg">Adresse: {data.plant.location.address}</p>
+				<p class="mb-4 text-lg">Description: {data.plant.description}</p>
 			</div>
 		</div>
 
 		<div class="relative h-96 w-full max-w-md overflow-hidden rounded-lg shadow-lg">
-			{#each data.photos as photo_url, index}
+			{#each data.plant.photos as photo_url, index}
 				<img
-					src={`${PUBLIC_BACKEND}/api/static/${photo_url.photo_file_url}`}
+					src={`${PUBLIC_BACKEND}/static/${photo_url.photo_file_url}`}
 					alt={photo_url.photo_file_url}
 					class="absolute left-0 top-0 h-full w-full object-cover transition-opacity duration-200 {index ===
 					activeIndex
@@ -110,6 +129,15 @@
 			placeholder="Aucune date sélectionnée"
 			readonly
 		/>
+		<button
+			class="mt-4 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+			on:click={handleSubmit}
+		>
+			Soumettre
+		</button>
+		{#if errorText}
+			<p class="text-red-500">{errorText}</p>
+		{/if}
 	</div>
 {/if}
 

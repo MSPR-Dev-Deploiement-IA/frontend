@@ -18,7 +18,7 @@
 				<a href="/profile" class="mx-4 text-blue-500">Profile</a>
 				<a href="/upload" class="mx-4 text-blue-500">Annonces</a>
 				<a href="/map" class="mx-4 text-blue-500">Carte</a>
-				<a href="/advise" class="mx-4 text-blue-500">Conseil</a>
+				<a href="/conseil" class="mx-4 text-blue-500">Conseil</a>
 				<a href="/chat" class="mx-4 text-blue-500">Message</a>
 				<a href="/mobile" class="mx-4 text-blue-500">Application Mobile</a>
 			{/if}

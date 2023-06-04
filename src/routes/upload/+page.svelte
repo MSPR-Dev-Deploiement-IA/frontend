@@ -134,6 +134,11 @@
 	};
 </script>
 
+<svelte:head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.css">
+</svelte:head>
+
+
 <NotificationDisplay />
 <main class="flex h-screen items-center justify-center">
 	<div class="w-1/3 rounded-lg bg-white p-8 shadow-lg">
@@ -151,7 +156,7 @@
 					/>
 					<span
 						class="cursor-help text-sm text-gray-500"
-						title="Donner ici un nom à votre plante w-1/12"
+						title="Donner ici un nom à votre plante"
 					>
 						❔
 					</span>

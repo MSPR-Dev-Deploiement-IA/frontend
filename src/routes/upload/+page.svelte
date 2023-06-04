@@ -5,6 +5,10 @@
 	import { add_photo } from '$lib/api/plants/add_photo';
 	import { invalidateAll } from '$app/navigation';
 
+	import { onMount, onDestroy } from 'svelte';
+	import flatpickr from 'flatpickr';
+	import { French } from 'flatpickr/dist/l10n/fr.js';
+
 	export let data: PageData;
 
 	const species = data.species_names;
@@ -25,6 +29,12 @@
 	let city: string = '';
 	let country: string = '';
 	let addressName: string = '';
+	let startDate: Date;
+	let endDate: Date;
+
+
+	let datepicker: flatpickr.Instance | null = null;
+	let dateInput: HTMLInputElement;
 
 	// Name
 	let name: string;
@@ -43,12 +53,39 @@
 		}
 	};
 
+	const handleClick = async () => {
+		if (!datepicker) {
+			datepicker = flatpickr(dateInput, {
+				mode: 'range',
+				inline: true,
+				dateFormat: 'j F Y',
+				minDate: 'today',
+				locale: French,
+				onChange: async function (selectedDates, dateStr, instance) {
+					if (selectedDates.length == 2) {
+						startDate = selectedDates[0];
+						endDate = selectedDates[1];
+						instance.close();
+						instance.calendarContainer.style.display = 'none';
+
+						console.log(startDate);
+						console.log(endDate);
+					}
+				}
+			});
+		}
+		datepicker.calendarContainer.style.display = 'block';
+		datepicker.open(); // Assurez-vous que le calendrier est ouvert.
+	};
+
 	// Form submission
 	const handleSubmit = async () => {
 		// Handle the form submission here
 		let body = <any>{};
 		body.name = name;
 		body.description = description;
+		body.start_date = startDate;
+		body.end_date = endDate;
 
 		if (addNewSpecies) {
 			body.newSpecies = newSpecies;
@@ -68,6 +105,8 @@
 		} else {
 			body.address = selectedAddress;
 		}
+
+		console.log(body);
 
 		const res = await add_plant(body);
 
@@ -259,6 +298,20 @@
 						</div>
 					{/each}
 				</div>
+				<button
+			class="mt-4 rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700"
+			on:click={handleClick}
+		>
+			Sélectionner une date de gardiennage
+		</button>
+
+		<input
+			type="date"
+			class="datepicker"
+			bind:this={dateInput}
+			placeholder="Aucune date sélectionnée"
+			readonly
+		/>
 			</div>
 
 			<button

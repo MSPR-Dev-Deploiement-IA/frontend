@@ -9,6 +9,8 @@ export const load = (async ({ params }) => {
 	const dates = await get_plant_history_by_id(id);
 	// We need to create a list of dates that are in the range of the start and end date
 
+	console.log(dates);
+	
 	const filledDates = [];
 	for (let i = 0; i < dates.length; i++) {
 		const date = new Date(dates[i].start_date);

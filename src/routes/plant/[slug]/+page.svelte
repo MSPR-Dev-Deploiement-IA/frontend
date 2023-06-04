@@ -52,7 +52,8 @@
 				mode: 'range',
 				inline: true,
 				dateFormat: 'j F Y',
-				minDate: 'today',
+				minDate: data.plant.start_date,
+				maxDate: data.plant.end_date,
 				disable: data.dates,
 				locale: French,
 				onChange: async function (selectedDates, dateStr, instance) {

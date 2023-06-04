@@ -50,7 +50,7 @@
 	};
 
 	const generate_image_url = (photo_url: string) => {
-		return `${PUBLIC_BACKEND}/api/static/${photo_url}`;
+		return `${PUBLIC_BACKEND}/static/${photo_url}`;
 	};
 
 	let activeIndex = 0;

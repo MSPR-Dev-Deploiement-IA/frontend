@@ -1,4 +1,4 @@
-import { PUBLIC_BACKEND } from '$env/static/public';
+import { PUBLIC_BACKEND } from '$env/dynamic/public';
 
 export const add_history = async (startDate: Date, endDate: Date, plant_id: number) => {
 	if (!startDate || !endDate || !plant_id) {

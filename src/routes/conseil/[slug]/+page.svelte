@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { add_advice } from '$lib/api/advice/add_advice';
-	import type { PageData } from './$types';
+    import type { PageData } from './$types';
+	import { userStore } from '$lib/stores/user';
 
 	export let data: PageData;
 	const specie = data.specie;
@@ -34,7 +35,7 @@
 			<p>No advice available for this species.</p>
 		{/if}
 	</div>
-
+	{#if $userStore.is_botanist}
 	<div class="ml-4 w-1/2 rounded-lg bg-white p-8 shadow-lg">
 		<h2 class="mb-4 text-xl">Submit new advice</h2>
 
@@ -60,4 +61,5 @@
 			</div>
 		</form>
 	</div>
+	{/if}
 </main>

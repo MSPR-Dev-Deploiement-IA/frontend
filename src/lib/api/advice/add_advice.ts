@@ -1,4 +1,6 @@
-import { PUBLIC_BACKEND } from '$env/dynamic/public';
+import { env } from '$env/dynamic/public';
+
+const PUBLIC_BACKEND = env.PUBLIC_BACKEND;
 
 export const add_advice = async (species_id: number, advice: string) => {
 	const response = await fetch(`${PUBLIC_BACKEND}/api/advice/`, {

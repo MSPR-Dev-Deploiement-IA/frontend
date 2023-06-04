@@ -9,7 +9,7 @@ export const add_history = async (startDate: Date, endDate: Date, plant_id: numb
 	const response = await fetch(`${PUBLIC_BACKEND}/api/history/`, {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'application/json',
+			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({
 			start_date: startDate.toISOString(),

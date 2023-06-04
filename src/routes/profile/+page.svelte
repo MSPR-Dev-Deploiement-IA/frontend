@@ -3,12 +3,10 @@
 	import { userStore } from '$lib/stores/user';
 	import { format } from 'date-fns';
 
-export function readableTimestamp(timestamp: string): string {
-  const date = new Date(timestamp);
-  return format(date, 'dd/MM/yyyy');
-}
-
-
+	export function readableTimestamp(timestamp: string): string {
+		const date = new Date(timestamp);
+		return format(date, 'dd/MM/yyyy');
+	}
 </script>
 
 <main class="flex h-screen items-center justify-center">
@@ -45,8 +43,5 @@ export function readableTimestamp(timestamp: string): string {
 		{/if}
 	</div>
 
-	<div class="w-2/3 rounded-lg bg-white p-8 shadow-lg">
-		
-	</div>
+	<div class="w-2/3 rounded-lg bg-white p-8 shadow-lg" />
 </main>
-

@@ -24,7 +24,6 @@
 	let errorText: string;
 	let successText: string;
 
-
 	onDestroy(() => {
 		if (datepicker) datepicker.destroy();
 	});
@@ -75,7 +74,8 @@
 
 	let activeIndex = 0;
 	const next = () => (activeIndex = (activeIndex + 1) % data.plant.photos.length);
-	const prev = () => (activeIndex = (activeIndex - 1 + data.plant.photos.length) % data.plant.photos.length);
+	const prev = () =>
+		(activeIndex = (activeIndex - 1 + data.plant.photos.length) % data.plant.photos.length);
 </script>
 
 {#if data}

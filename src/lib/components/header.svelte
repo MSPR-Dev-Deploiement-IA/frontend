@@ -21,7 +21,7 @@
 				<a href="/conseil" class="mx-4 text-blue-500">Conseil</a>
 				<a href="/botaniste" class="mx-4 text-blue-500">Devenir Botaniste ?</a>
 				<a href="/chat" class="mx-4 text-blue-500">Message</a>
-				<a href="/mobile" class="mx-4 text-blue-500">Application Mobile</a>
+				<a href="/arosaje.apk" class="mx-4 text-blue-500">Application Mobile</a>
 			{/if}
 		</div>
 		<div class="ml-auto">

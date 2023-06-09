@@ -8,6 +8,8 @@
 	let registrationSuccess: boolean = false;
 	let registrationError: boolean = false;
 
+	let accepted = false;
+
 	async function handleSubmit() {
 		try {
 			const isSuccess: boolean = await register(name, email, password);
@@ -38,7 +40,7 @@
 
 		<form on:submit|preventDefault={handleSubmit}>
 			<div class="mb-4">
-				<label for="name" class="block">Name:</label>
+				<label for="name" class="block">Nom :</label>
 				<input
 					type="text"
 					id="name"
@@ -49,7 +51,7 @@
 			</div>
 
 			<div class="mb-4">
-				<label for="email" class="block">Email:</label>
+				<label for="email" class="block">Email :</label>
 				<input
 					type="email"
 					id="email"
@@ -60,7 +62,7 @@
 			</div>
 
 			<div class="mb-4">
-				<label for="password" class="block">Password:</label>
+				<label for="password" class="block">Mot de passe :</label>
 				<input
 					type="password"
 					id="password"
@@ -71,7 +73,7 @@
 			</div>
 
 			<div class="mb-4">
-				<label for="password-confirmation" class="block">Password Confirmation:</label>
+				<label for="password-confirmation" class="block">Confirmation de mot de passe :</label>
 				<input
 					type="password"
 					id="password-confirmation"
@@ -81,7 +83,21 @@
 				/>
 			</div>
 
-			<button type="submit" class="rounded bg-blue-500 px-4 py-2 text-white">Register</button>
+			<div class="flex items-center mb-4">
+				<input
+					id="default-checkbox"
+					type="checkbox"
+					bind:checked={accepted}
+					class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+				/>
+				<label
+					for="default-checkbox"
+					class="ml-2 text-sm font-medium">
+					En cochant cette case, vous confirmez avoir lu, compris et accepté notre <a href="/legal" class="text-blue-600">politique de confidentialité</a>.
+				</label>
+			</div>
+
+			<button type="submit" disabled={!accepted} class="rounded bg-blue-500 px-4 py-2 text-white disabled:bg-slate-200 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none">S'enregistrer</button>
 		</form>
 	</div>
 </main>

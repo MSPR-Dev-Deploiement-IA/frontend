@@ -6,10 +6,16 @@ export async function add_photo(plant_id: string, files: File[]) {
 		formData.append('files', file);
 	}
 
+	const access_token = localStorage.getItem('access_token');
+
 	const response = await fetch(`${env.PUBLIC_BACKEND}/api/plants/upload?plantId=${plant_id}`, {
 		method: 'POST',
 		body: formData,
-		credentials: 'include'
+		credentials: 'include',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${access_token}`
+		},
 	});
 
 	return response.json();

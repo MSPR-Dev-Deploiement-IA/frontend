@@ -10,9 +10,15 @@ export const post_message = async (message_text: string) => {
 
 	console.log(body);
 
+	const access_token = localStorage.getItem('access_token');
+
 	const res = await fetch(`${PUBLIC_BACKEND}/api/messages/add`, {
 		method: 'POST',
 		credentials: 'include',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${access_token}`
+		},
 		body: body
 	});
 

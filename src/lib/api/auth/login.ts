@@ -24,8 +24,8 @@ export const login = async (email: string, password: string) => {
 	const access_token = json.access_token;
 	const refresh_token = json.refresh_token;
 
-	localStorage.setItem('access_token', access_token);
-	localStorage.setItem('refresh_token', refresh_token);
+	window.localStorage.setItem('access_token', access_token);
+	window.localStorage.setItem('refresh_token', refresh_token);
 
 	if (response.status === 200) {
 		const userResponse = await fetch(`${PUBLIC_BACKEND}/api/users/me`, {

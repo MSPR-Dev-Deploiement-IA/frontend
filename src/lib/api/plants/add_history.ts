@@ -4,7 +4,7 @@ const PUBLIC_BACKEND = env.PUBLIC_BACKEND;
 
 export const add_history = async (startDate: Date, endDate: Date, plant_id: number) => {
 	// get access token from local storage
-	const access_token = localStorage.getItem('access_token');
+	const access_token = window.localStorage.getItem('access_token');
 
 	if (!startDate || !endDate || !plant_id) {
 		console.error('Start date, end date, or plant id is not set');

@@ -1,7 +1,7 @@
 import { env } from '$env/dynamic/public';
 
 export const get_advices = async () => {
-	const access_token = localStorage.getItem('access_token');
+	const access_token = window.localStorage.getItem('access_token');
 	const response = await fetch(`${env.PUBLIC_BACKEND}/api/advice/`, {
 		method: 'GET',
 		headers: {

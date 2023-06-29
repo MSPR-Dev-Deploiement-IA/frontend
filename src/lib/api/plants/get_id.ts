@@ -1,6 +1,6 @@
 import { env } from '$env/dynamic/public';
 export const get_plant_by_id = async (id: string) => {
-	const access_token = localStorage.getItem('access_token');
+	const access_token = window.localStorage.getItem('access_token');
 	const url = `${env.PUBLIC_BACKEND}/api/plants/${id}`;
 	console.log(url);
 	const response = await fetch(url, {

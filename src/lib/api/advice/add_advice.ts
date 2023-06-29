@@ -4,7 +4,7 @@ const PUBLIC_BACKEND = env.PUBLIC_BACKEND;
 
 export const add_advice = async (species_id: number, advice: string) => {
 	// get access token from local storage
-	const access_token = localStorage.getItem('access_token');
+	const access_token = window.localStorage.getItem('access_token');
 
 	const response = await fetch(`${PUBLIC_BACKEND}/api/advice/`, {
 		method: 'POST',
